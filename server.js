@@ -55,12 +55,11 @@ app.get('/api/health', (req, res) => {
 });
 
 // Serve static files from client/dist
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
-// Handle React routing, return all requests to React app
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+// Root endpoint for backend
+app.get('/', (req, res) => {
+    res.json({ message: 'Backend is running correctly. Use /api for endpoints.' });
 });
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -74,3 +73,4 @@ app.listen(PORT, () => {
     console.log(`📡 API endpoint: http://localhost:${PORT}/api`);
     console.log(`\n✨ E-commerce Platform Backend Ready!\n`);
 });
+
