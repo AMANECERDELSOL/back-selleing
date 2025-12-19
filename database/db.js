@@ -148,16 +148,15 @@ async function seedDatabase() {
 
     // Seed categories
     const categories = [
-      { name: 'Gift Cards', description: 'Tarjetas de regalo para diversas plataformas' },
-      { name: 'Chips', description: 'Chips para juegos y aplicaciones' },
-      { name: 'Artículos Didácticos', description: 'Materiales educativos y de aprendizaje' },
-      { name: 'Cuentas de Juegos', description: 'Cuentas verificadas de videojuegos' },
+      { name: 'Tarjetas clonadas', description: 'Tarjetas conseguidas con tecnologia NFC' },
+      { name: 'Chips NFC', description: 'Chips para clonar Tarjetas bancarias y tarjetas de acceso' },
+      { name: 'Archivos FUD', description: '  Evasion de antivirus ' },
+      { name: 'Cuentas de Paypal', description: 'Cuentas verificadas con monto random (bajo su riesgo)' },
       { name: 'Teléfonos', description: 'Teléfonos móviles y accesorios' },
       { name: 'Joyería', description: 'Joyas y artículos de lujo' },
-      { name: 'Billetes', description: 'Colección de billetes y numismática' },
-      { name: 'Cuentas', description: 'Cuentas de diversos servicios' },
-      { name: 'Tarjetas', description: 'Tarjetas coleccionables y de servicios' },
-      { name: 'Didácticos', description: 'Juegos y material didáctico general' }
+      { name: 'Billetes', description: 'Colección de billetes 1:1' },
+      { name: 'RAT', description: 'Software de hacking multiplataforma' },
+      { name: 'Tarjetas de juego modificadas', description: 'Tarjetas de juego modificadas de valor' },
     ];
 
     for (const category of categories) {
@@ -187,15 +186,15 @@ function seedSampleProducts() {
   if (productsCount && productsCount.count > 0) return;
 
   const sampleProducts = [
-    { name: 'Amazon Gift Card $50', description: 'Tarjeta de regalo de Amazon por $50 USD', price: 55.00, stock: 20, category: 1, image_url: '/images/amazon-gift-card.jpg' },
-    { name: 'Netflix Gift Card 1 mes', description: 'Suscripción de Netflix por 1 mes', price: 15.00, stock: 50, category: 1, image_url: '/images/netflix-gift-card.jpg' },
-    { name: 'Steam Gift Card $25', description: 'Tarjeta de regalo de Steam por $25 USD', price: 27.50, stock: 30, category: 1, image_url: '/images/steam-gift-card.jpg' },
-    { name: 'Chips Poker 1M', description: '1 millón de chips para juegos de poker online', price: 10.00, stock: 100, category: 2, image_url: '/images/poker-chips.jpg' },
-    { name: 'Monedas FIFA 100K', description: '100,000 monedas para FIFA Ultimate Team', price: 20.00, stock: 75, category: 2, image_url: '/images/fifa-coins.jpg' },
-    { name: 'Curso Completo de JavaScript', description: 'Curso completo de JavaScript desde cero hasta avanzado', price: 45.00, stock: 999, category: 3, image_url: '/images/js-course.jpg' },
-    { name: 'Pack Libros Programación PDF', description: 'Colección de 50 libros de programación en PDF', price: 25.00, stock: 999, category: 3, image_url: '/images/programming-books.jpg' },
-    { name: 'Cuenta LOL Nivel 30', description: 'Cuenta de League of Legends nivel 30 sin rankear', price: 30.00, stock: 15, category: 4, image_url: '/images/lol-account.jpg' },
-    { name: 'Cuenta Valorant', description: 'Cuenta de Valorant con agentes desbloqueados', price: 40.00, stock: 10, category: 4, image_url: '/images/valorant-account.jpg' }
+    { name: 'Amazon Gift Card $50', description: 'Tarjeta de regalo de Amazon por $50 USD', price: 55.00, stock: 20, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Netflix Gift Card 1 mes', description: 'Suscripción de Netflix por 1 mes', price: 15.00, stock: 50, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Steam Gift Card $25', description: 'Tarjeta de regalo de Steam por $25 USD', price: 27.50, stock: 30, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Chips Poker 1M', description: '1 millón de chips para juegos de poker online', price: 10.00, stock: 100, category: 2, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Monedas FIFA 100K', description: '100,000 monedas para FIFA Ultimate Team', price: 20.00, stock: 75, category: 2, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Curso Completo de JavaScript', description: 'Curso completo de JavaScript desde cero hasta avanzado', price: 45.00, stock: 999, category: 3, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Pack Libros Programación PDF', description: 'Colección de 50 libros de programación en PDF', price: 25.00, stock: 999, category: 3, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Cuenta LOL Nivel 30', description: 'Cuenta de League of Legends nivel 30 sin rankear', price: 30.00, stock: 15, category: 4, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
+    { name: 'Cuenta Valorant', description: 'Cuenta de Valorant con agentes desbloqueados', price: 40.00, stock: 10, category: 4, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' }
   ];
 
   for (const product of sampleProducts) {
