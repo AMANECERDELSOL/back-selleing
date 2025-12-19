@@ -2,6 +2,7 @@
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     email TEXT UNIQUE NOT NULL,
+    username TEXT,
     password TEXT NOT NULL,
     role TEXT NOT NULL CHECK(role IN ('buyer', 'seller', 'superuser')),
     binance_wallet TEXT,
