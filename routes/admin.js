@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/sellers', authenticateToken, requireSuperuser, (req, res) => {
     try {
         const sellers = getAll(`
-      SELECT id, email, earnings, created_at, is_active
+      SELECT id, email, username, earnings, created_at, is_active
       FROM users
       WHERE role = 'seller'
       ORDER BY created_at DESC
@@ -37,10 +37,10 @@ router.get('/sellers', authenticateToken, requireSuperuser, (req, res) => {
 // Create new seller account (superuser only)
 router.post('/sellers', authenticateToken, requireSuperuser, async (req, res) => {
     try {
-        const { email, password, binance_wallet } = req.body;
+        const { email, username, password, binance_wallet } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({ error: 'Email y contraseña son requeridos.' });
+        if (!email || !password || !username) {
+            return res.status(400).json({ error: 'Email, nombre de usuario y contraseña son requeridos.' });
         }
 
         // Check if user already exists
@@ -54,15 +54,16 @@ router.post('/sellers', authenticateToken, requireSuperuser, async (req, res) =>
 
         // Create seller
         const sellerId = runQuery(`
-      INSERT INTO users (email, password, role, binance_wallet)
-      VALUES (?, ?, 'seller', ?)
-    `, [email, hashedPassword, binance_wallet || null]);
+      INSERT INTO users (email, username, password, role, binance_wallet)
+      VALUES (?, ?, ?, 'seller', ?)
+    `, [email, username, hashedPassword, binance_wallet || null]);
 
         res.status(201).json({
             message: 'Vendedor creado exitosamente.',
             seller: {
                 id: sellerId,
                 email,
+                username,
                 role: 'seller'
             }
         });
@@ -75,7 +76,7 @@ router.post('/sellers', authenticateToken, requireSuperuser, async (req, res) =>
 // Update seller details
 router.put('/sellers/:id', authenticateToken, requireSuperuser, async (req, res) => {
     try {
-        const { email, password, binance_wallet, is_active } = req.body;
+        const { email, username, password, binance_wallet, is_active, earnings } = req.body;
 
         const seller = getOne('SELECT * FROM users WHERE id = ? AND role = ?', [req.params.id, 'seller']);
 
@@ -87,23 +88,27 @@ router.put('/sellers/:id', authenticateToken, requireSuperuser, async (req, res)
         if (password) {
             const hashedPassword = await bcrypt.hash(password, 10);
             runQuery(`
-        UPDATE users SET email = ?, binance_wallet = ?, is_active = ?, password = ?, updated_at = CURRENT_TIMESTAMP 
+        UPDATE users SET email = ?, username = ?, binance_wallet = ?, is_active = ?, earnings = ?, password = ?, updated_at = CURRENT_TIMESTAMP 
         WHERE id = ?
       `, [
                 email || seller.email,
+                username || seller.username,
                 binance_wallet || seller.binance_wallet,
                 is_active !== undefined ? (is_active ? 1 : 0) : seller.is_active,
+                earnings !== undefined ? earnings : seller.earnings,
                 hashedPassword,
                 req.params.id
             ]);
         } else {
             runQuery(`
-        UPDATE users SET email = ?, binance_wallet = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP 
+        UPDATE users SET email = ?, username = ?, binance_wallet = ?, is_active = ?, earnings = ?, updated_at = CURRENT_TIMESTAMP 
         WHERE id = ?
       `, [
                 email || seller.email,
+                username || seller.username,
                 binance_wallet || seller.binance_wallet,
                 is_active !== undefined ? (is_active ? 1 : 0) : seller.is_active,
+                earnings !== undefined ? earnings : seller.earnings,
                 req.params.id
             ]);
         }
