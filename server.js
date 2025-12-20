@@ -22,8 +22,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize database
-initializeDatabase();
+// Initialize database and start server
+(async () => {
+    try {
+        await initializeDatabase();
+        console.log('✓ Database ready for connections');
+    } catch (error) {
+        console.error('Failed to initialize database:', error);
+        process.exit(1);
+    }
+})();
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -60,7 +68,6 @@ app.get('/', (req, res) => {
     res.json({ message: 'Backend is running correctly. Use /api for endpoints.' });
 });
 
-
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -73,4 +80,3 @@ app.listen(PORT, () => {
     console.log(`📡 API endpoint: http://localhost:${PORT}/api`);
     console.log(`\n✨ E-commerce Platform Backend Ready!\n`);
 });
-
