@@ -186,15 +186,7 @@ function seedSampleProducts() {
   if (productsCount && productsCount.count > 0) return;
 
   const sampleProducts = [
-    { name: 'Amazon Gift Card $50', description: 'Tarjeta de regalo de Amazon por $50 USD', price: 55.00, stock: 20, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Netflix Gift Card 1 mes', description: 'Suscripción de Netflix por 1 mes', price: 15.00, stock: 50, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Steam Gift Card $25', description: 'Tarjeta de regalo de Steam por $25 USD', price: 27.50, stock: 30, category: 1, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Chips Poker 1M', description: '1 millón de chips para juegos de poker online', price: 10.00, stock: 100, category: 2, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Monedas FIFA 100K', description: '100,000 monedas para FIFA Ultimate Team', price: 20.00, stock: 75, category: 2, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Curso Completo de JavaScript', description: 'Curso completo de JavaScript desde cero hasta avanzado', price: 45.00, stock: 999, category: 3, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Pack Libros Programación PDF', description: 'Colección de 50 libros de programación en PDF', price: 25.00, stock: 999, category: 3, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Cuenta LOL Nivel 30', description: 'Cuenta de League of Legends nivel 30 sin rankear', price: 30.00, stock: 15, category: 4, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' },
-    { name: 'Cuenta Valorant', description: 'Cuenta de Valorant con agentes desbloqueados', price: 40.00, stock: 10, category: 4, image_url: 'https://i.postimg.cc/m2v6mXmX/placeholder.png' }
+    
   ];
 
   for (const product of sampleProducts) {
@@ -220,3 +212,4 @@ function seedSampleProducts() {
 
 export { db, saveDatabase, getAll as getAllRows, getOne as getOneRow };
 export default { initializeDatabase, runQuery, getAll, getOne, saveDatabase };
+
